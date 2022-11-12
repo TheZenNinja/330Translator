@@ -1,14 +1,16 @@
 ﻿using System;
-
+using System.Windows.Forms;
 namespace Translator
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // inputFile = input("Input File Path) ")
-            string inputFile = "test.vm";//input("Input File Path) ")
-                                         //outputFile = input("Output File Path (Optional)) ")
+            string inputFile = "test.vm";
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                    inputFile = fileDialog.FileName;
+                                         
             string outputFile = "";
 
             //create parser
@@ -47,10 +49,11 @@ namespace Translator
                         case "return":
                             cWriter.WriteReturn();
                             break;
-                        //"comment"
                         //whitespace causing program to hang
-                        case "":
-                        case "//":
+                        //case "":
+                        //case "//":
+                        case "comment":
+                            parser.advance();
                             continue;
                         default:
                             throw new ArgumentException($"invalid command '{cmd}'");

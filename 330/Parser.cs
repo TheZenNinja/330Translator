@@ -37,7 +37,7 @@ namespace Translator
         {
             //return an id string based on the split current line [0] item
             string cmd = currentLine.Split()[0];
-            if (Regex.IsMatch(cmd, "^//.*"))
+            if (Regex.IsMatch(cmd, "^//.*") || cmd == "")
                 return "comment";
             else
                 return cmd;

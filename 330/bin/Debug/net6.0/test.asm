@@ -14,9 +14,9 @@ M=D
 M=M+1
 
 
-//--push constant 1--
-//get constant 1
-@1
+//--push constant 0--
+//get constant 0
+@0
 D=A
 //push to stack
 @0

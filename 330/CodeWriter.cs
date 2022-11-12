@@ -148,10 +148,10 @@ namespace Translator
         {
             using (var output = new StreamWriter(File.OpenWrite(outputFilePath)))
             {
+                commands.Add("\n\n(END_OF_PROGRAM)\n@END_OF_PROGRAM\n0;JMP");
+
                 foreach (var cmd in commands)
                     output.WriteLine(cmd);
-
-                commands.Add("\n\n(END_OF_PROGRAM)\n@END_OF_PROGRAM\n0;JMP");
             }
         }
 
@@ -186,9 +186,10 @@ namespace Translator
 
         public void WriteFunction(string funcName, int nVars)
         {
+            //have a label to skip over the function? but how is it called in the sample?
             WriteLabel(funcName);
             for (int i = 0; i < nVars; i++)
-                WritePushPop(false, "constant", i.ToString());
+                WritePushPop(false, "constant", 0.ToString());
         }
 
 
